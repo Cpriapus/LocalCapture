@@ -49,6 +49,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Controler";
             this.TopMost = true;
+            this.TransparencyKey = System.Drawing.Color.White;
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_MouseDown);
             this.ResumeLayout(false);
 

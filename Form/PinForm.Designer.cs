@@ -32,16 +32,19 @@
             // 
             // PinForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(10, 10);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(12, 14);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PinForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "PinForm";
             this.TopMost = true;
+            this.TransparencyKey = System.Drawing.SystemColors.Control;
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PinForm_MouseClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PinForm_MouseDown);
             this.ResumeLayout(false);

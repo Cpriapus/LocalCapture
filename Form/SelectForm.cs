@@ -1,4 +1,5 @@
 ﻿using LocalCapture.Core;
+using System.Diagnostics;
 
 namespace LocalCapture
 {
@@ -108,9 +109,12 @@ namespace LocalCapture
                         g2.DrawRectangle(Pens.White, 1, 1, (RightBottomPoint.X - LeftTopPoint.X - 3), (RightBottomPoint.Y - LeftTopPoint.Y - 3));
                     }
                     Program.IsCapturing = false;
+                    string GUID = Guid.NewGuid().ToString();
 #pragma warning disable CS8604 // 引用类型参数可能为 null。
-                    new PinForm(LeftTopPoint, b2.Clone() as Bitmap);
+                    new PinForm(LeftTopPoint, b2.Clone() as Bitmap, GUID);
 #pragma warning restore CS8604 // 引用类型参数可能为 null。
+                    Program.CaptureHistories.Add(GUID, new CaptureHistory { Size = LeftTopPoint, Bitmap = b2.Clone() as Bitmap});
+                    Serialize.SaveFile();
                 }
                 b2.Dispose();
                 this.Close();
@@ -149,6 +153,7 @@ namespace LocalCapture
         {
             if (e.Button == MouseButtons.Right)
             {
+                Program.IsCapturing = false;
                 this.Close();
             }
         }
@@ -156,6 +161,7 @@ namespace LocalCapture
         {
             if (e.KeyValue == 27)
             {
+                Program.IsCapturing = false;
                 this.Close();
             }
         }

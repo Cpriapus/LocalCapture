@@ -9,7 +9,8 @@ namespace LocalCapture
         int dWidth = 0;
         bool Zoom = false;
         Point Position;
-        public PinForm(Point Position, Bitmap ShowCapture)
+        string GUID = "";
+        public PinForm(Point Position, Bitmap ShowCapture,string GUID)
         {
             InitializeComponent();
             dWidth = ShowCapture.Width;
@@ -18,13 +19,16 @@ namespace LocalCapture
             this.Location = this.Position = Position;
             this.Size = new Size(dWidth, dHeight);
             this.BackgroundImage = ShowCapture;
-            SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW);
+            this.GUID = GUID;
+            //不要阴影
+            //SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW);
             this.Show();
         }
         private void SelectForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 27)
             {
+                DeleteCaptureHistory();
                 this.Close();
             }
         }
@@ -55,6 +59,7 @@ namespace LocalCapture
             }
             if (e.Button == MouseButtons.Right)
             {
+                DeleteCaptureHistory();
                 this.Close();
             }
         }
@@ -73,5 +78,10 @@ namespace LocalCapture
         public static extern int SetClassLong(IntPtr hwnd, int nIndex, int dwNewLong);
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int GetClassLong(IntPtr hwnd, int nIndex);
+        private void DeleteCaptureHistory()
+        {
+            Program.CaptureHistories.Remove(this.GUID);
+            Serialize.SaveFile();
+        }
     }
 }

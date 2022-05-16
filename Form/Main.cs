@@ -1,4 +1,5 @@
 using LocalCapture.Core;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LocalCapture
 {
@@ -10,6 +11,7 @@ namespace LocalCapture
             this.Hide();
             //注册热键Ctrl+Alt+A，Id号为100。HotKey.KeyModifiers.Shift也可以直接使用数字4来表示。
             HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.CtrlAlt, Keys.A);
+            Serialize.LoadFile();
         }
         //WinForm隐藏TaskTab
         protected override CreateParams CreateParams
@@ -63,5 +65,6 @@ namespace LocalCapture
             HotKey.UnregisterHotKey(Handle, 100);
             Application.Exit();
         }
+
     }
 }

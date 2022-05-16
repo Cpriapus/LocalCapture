@@ -8,7 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject>LocalCapture.Program</StartupObject>
     <PlatformTarget>x64</PlatformTarget>
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <SignAssembly>False</SignAssembly>
     <FileVersion>1.0</FileVersion>
     <AssemblyVersion>1.0</AssemblyVersion>
